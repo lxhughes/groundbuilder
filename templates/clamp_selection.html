@@ -1,0 +1,279 @@
+
+<div class="wrapper">
+
+<header>
+	<h1>
+		<div class="logo"></div>
+		<span>Choose Clamp {{ label.toUpperCase() }}</span>
+		<a ui-sref="main" class="cancel"><i class="fa fa-chevron-left"></i> Back </a></h1>
+</header>
+
+<form>
+
+    <!-- SELECT CLAMP TYPE -->
+    <!-- BUG WITH FIELDSET AND FLEXBOX...USED ROLE=RADIOGROUP AS WORKAROUND -->
+    <h2 class="selection_header">Select a Clamp Type</h2>
+   	<div role="radiogroup" class="wrapper_justify">
+		<div ng-repeat="(type, clamptype) in $storage.options.clamptype">
+			<input 
+				type="radio" 
+				name="clamp_type" 
+				id="clamp_type_{{label}}_{{type}}" 
+				ng-model="$storage.product.clamp[label].type" 
+				value="{{type}}"
+				ng-click="scrollTo('clamp_select')" />
+			<label 
+				for="clamp_type_{{label}}_{{type}}" 
+				class="large_item" 
+				ng-class="{ 'clamp_unselected': $storage.product.clamp[label].type != type, 'clamp_selected border_darkblue': $storage.product.clamp[label].type == type }">
+				<h2>{{ clamptype.text }}</h2>
+				<img ng-src="img/{{ $storage.options.clamptype[type].example_part }}.png" alt="{{ clamptype.text }}" />
+				<div class="summary" ng-if="clamptype.description">
+					<p>{{ clamptype.description }}</p>
+				</div>
+			</label>
+		</div>
+	</div>
+    
+    <!-- SELECT CLAMP -->
+    <div id="clamp_select" ng-if="$storage.product.clamp[label].type">
+		<h2 class="selection_header">Select a Clamp</h2>
+			<div role="radiogroup" class="wrapper_justify">
+		
+			<label 
+				ng-repeat="clamp in $storage.options.clamp | matchClampType:$storage.product.clamp[label].type:$storage.product.wire" 
+				class="small_item" 
+				ng-class="{ 
+					'clamp_unselected': $storage.product.clamp[label].productnum != clamp.productnum, 
+					'clamp_selected border_darkblue': $storage.product.clamp[label].productnum == clamp.productnum 
+				}"
+				ng-click="clampSelect(clamp.productnum, label)"
+			>
+				<input type="radio" 
+					name="clamp_subselect" 
+					ng-model="$storage.product.clamp[label].productnum" 
+					value="{{ clamp.productnum }}" />
+					
+				<img ng-src="img/{{ clamp.productnum }}.png" alt="{{ clamp.text }}" />
+					<h3>{{ clamp.price | currency }}</h3>
+   
+					<div class="small_summary">
+					<ul>
+						<li>
+							<div class="clampinfo_label">Product No.</div>
+							<div class="clampinfo_text">{{ clamp.productnum }}</div>
+						</li>
+						
+						<li>
+							<div class="clampinfo_label">Name</div>
+							<div class="clampinfo_text" ng-bind-html="clamp.text"></div>
+						</li>
+						
+						<li>
+							<div class="clampinfo_label">Eye &amp; Clamp</div>
+							<div class="clampinfo_text" ng-bind-html="clamp.eyeclamp_desc"></div>
+						</li>
+						
+						<li>
+							<div class="clampinfo_label">Type</div>
+							<div class="clampinfo_text" ng-bind-html="$storage.options.clamptype[clamp.type].text"></div>
+						</li>
+						
+						<li>
+							<div class="clampinfo_label">Jaw</div>
+							<div class="clampinfo_text" ng-bind-html="clamp.jaw"></div>
+						</li>
+						
+						<li>
+							<div class="clampinfo_label">Material</div>
+							<div class="clampinfo_text" ng-bind-html="clamp.material"></div>
+						</li>
+						
+						<li>
+							<div class="clampinfo_label">Screw Type</div>
+							<div class="clampinfo_text" ng-bind-html="clamp.screw_type"></div>
+						</li>
+						
+						<li>
+							<div class="clampinfo_label">Ferrule Type</div>
+							<div class="clampinfo_text" ng-bind-html="clamp.ferrule_type"></div>
+						</li>
+						
+						<li>
+							<div class="clampinfo_label">Main Line Range</div>
+							<div class="clampinfo_text" ng-bind-html="clamp.main_line_range"></div>
+						</li>
+						
+						<li>
+							<div class="clampinfo_label">Jaw Opening Range (In.)</div>
+							<div class="clampinfo_text" ng-bind-html="clamp.jaw_opening_in"></div>
+						</li>
+						
+						<li>
+							<div class="clampinfo_label">Jaw Opening Range (Mm.)</div>
+							<div class="clampinfo_text" ng-bind-html="clamp.jaw_opening_mm"></div>
+						</li>
+						
+						<li>
+							<div class="clampinfo_label">Continuous Current Rating</div>
+							<div class="clampinfo_text" ng-bind-html="clamp.cont_current_rating"></div>
+						</li>
+						
+						<li>
+							<div class="clampinfo_label">Weight</div>
+							<div class="clampinfo_text" ng-bind-html="clamp.weight"></div>
+						</li>
+
+					</ul>
+					</div>			
+				</label>
+				
+			</div>
+
+			<!-- SELECT clamp_accessory TYPE -->
+			<div 
+				id="clamp_accessory_type_select" 
+				ng-if="$storage.product.clamp[label].productnum && $storage.options.clamp[$storage.product.clamp[label].productnum].clamp_accessory_compatibility">
+			
+				<h2 class="selection_header">Select Accessory Type</h2>
+
+				   <div class="wrapper_justify">
+
+						<div ng-repeat="(acctype, compatibleaccs) in $storage.options.clamp[$storage.product.clamp[label].productnum].clamp_accessory_compatibility">
+
+							<input type="checkbox" 
+								name="clamp_accessory_type" 
+								id="clamp_accessory_type_{{label}}_{{acctype}}"
+								ng-model="$storage.product.clamp[label].accessory_type[acctype]" 
+								ng-click="setCurrentAccessoryType(acctype)"
+								value="1">  
+							<label for="clamp_accessory_type_{{label}}_{{acctype}}" 
+								class="large_item"
+								ng-class="{ 
+									'clamp_unselected': acctype != current.accessory_type && emptyOrNull($storage.product.clamp[label].clamp_accessory[acctype]), 
+									'clamp_selected border_darkblue': acctype == current.accessory_type || !emptyOrNull($storage.product.clamp[label].clamp_accessory[acctype])
+								}">
+
+								<h2>{{ $storage.options.clamp_accessory_type[acctype].text }}</h2>
+								<img ng-src="img/{{ $storage.options.clamp_accessory_type[acctype].example_part }}.png" alt="{{ $storage.options.clamp_accessory_type[acctype].text }}" />
+								<div class="summary" ng-if="$storage.options.clamp_accessory_type[acctype].description">
+									  <p>{{ $storage.options.clamp_accessory_type[acctype].description }}</p>
+								</div>
+							</label>
+						</div>
+
+					</div>
+			
+					<!-- SELECT clamp_accessory -->
+					<div id="clamp_accessory_select" ng-if="current.accessory_type">
+					  <h2 class="selection_header">Select Accessory</h2>
+
+					  <!-- Radio Version -->
+					   <div ng-if="$storage.options.clamp_accessory_type[current.accessory_type].mode == 'radio'" role="radiogroup" class="wrapper_justify">
+						<label
+							ng-if="$storage.options.clamp[$storage.product.clamp[label].productnum].clamp_accessory_compatibility[current.accessory_type]" 
+							ng-repeat="accnum in $storage.options.clamp[$storage.product.clamp[label].productnum].clamp_accessory_compatibility[current.accessory_type]" 
+							class="small_item" 
+							ng-class="{ 
+								'clamp_unselected': $storage.product.clamp[label].clamp_accessory[current.accessory_type] != accnum, 
+								'clamp_selected border_darkblue': $storage.product.clamp[label].clamp_accessory[current.accessory_type] == accnum 
+							}">
+							<input type="radio" 
+								name="clamp_accessory_subselect" 
+								ng-model="$storage.product.clamp[label].clamp_accessory[current.accessory_type]" 
+								ng-value="toggleValue(accnum, $storage.product.clamp[label].clamp_accessory[current.accessory_type])" />
+			
+									<img ng-src="img/{{ accnum }}.png" alt="{{ $storage.options.clamp_accessory[accnum].text }}" />
+									 <h3>{{ $storage.options.clamp_accessory[accnum].price | currency }}</h3>
+	
+								<div class="small_summary">
+									   <ul>
+											 <li>Part Number: <strong>{{ $storage.options.clamp_accessory[accnum].productnum }}</strong></li>
+											 <li>Name: <strong>{{ $storage.options.clamp_accessory[accnum].text }}</strong></li>
+										</ul>
+								</div>
+				   
+							</label>
+						</div>
+						
+						<!-- Checkbox Version -->
+						<div ng-if="$storage.options.clamp_accessory_type[current.accessory_type].mode == 'checkbox'" class="wrapper_justify">
+						<label
+							ng-if="$storage.options.clamp[$storage.product.clamp[label].productnum].clamp_accessory_compatibility[current.accessory_type]" 
+							ng-repeat="accnum in $storage.options.clamp[$storage.product.clamp[label].productnum].clamp_accessory_compatibility[current.accessory_type]" 
+							class="small_item" 
+							ng-class="{ 
+								'clamp_unselected': !inArray(accnum, $storage.product.clamp[label].clamp_accessory[current.accessory_type]), 
+								'clamp_selected border_darkblue': inArray(accnum, $storage.product.clamp[label].clamp_accessory[current.accessory_type]) 
+							}">
+							<input type="checkbox" 
+								name="clamp_accessory_subselect" 
+								ng-model="$storage.product.clamp[label].clamp_accessory[current.accessory_type][accnum]" 
+							 />
+			
+									<img ng-src="img/{{ accnum }}.png" alt="{{ $storage.options.clamp_accessory[accnum].text }}" />
+									 <h3>{{ $storage.$storage.options.clamp_accessory[accnum].price | currency }}</h3>
+	
+								<div class="small_summary">
+									   <ul>
+											 <li>Part Number: <strong>{{ $storage.options.clamp_accessory[accnum].productnum }}</strong></li>
+											 <li>Name: <strong>{{ $storage.options.clamp_accessory[accnum].text }}</strong></li>
+										</ul>
+								</div>
+				   
+							</label>
+
+						</div>
+
+
+						<!-- Stepper Version -->
+						<div ng-if="$storage.options.clamp_accessory_type[current.accessory_type].mode == 'stepper'" role="radiogroup" class="wrapper_justify">
+						<label
+							ng-if="$storage.options.clamp[$storage.product.clamp[label].productnum].clamp_accessory_compatibility[current.accessory_type]" 
+							ng-repeat="accnum in $storage.options.clamp[$storage.product.clamp[label].productnum].clamp_accessory_compatibility[current.accessory_type]" 
+							class="small_item" 
+							ng-class="{ 
+								'clamp_unselected': $storage.product.clamp[label].clamp_accessory[current.accessory_type][accnum] == undefined || $storage.product.clamp[label].clamp_accessory[current.accessory_type][accnum] == 0, 
+								'clamp_selected border_darkblue': $storage.product.clamp[label].clamp_accessory[current.accessory_type][accnum] && $storage.product.clamp[label].clamp_accessory[current.accessory_type][accnum] > 0 
+							}">
+							<input type="radio" 
+								name="clamp_accessory_subselect" 
+							/>
+			
+									<img ng-src="img/{{ accnum }}.png" alt="{{ $storage.options.clamp_accessory[accnum].text }}" />
+									 <h3>{{ $storage.options.clamp_accessory[accnum].price | currency }}</h3>
+	
+								<div class="small_summary">
+									   <ul>
+											 <li>Part Number: <strong>{{ $storage.options.clamp_accessory[accnum].productnum }}</strong></li>
+											 <li>Name: <strong>{{ $storage.options.clamp_accessory[accnum].text }}</strong></li>
+										</ul>
+								</div>
+
+								<div class="stepper">
+				                  <button type="button" class="stepper__btn--decr" ng-click="decrement_accessory(label, current.accessory_type, accnum)" ng-disabled="($storage.product.clamp[label].clamp_accessory[current.accessory_type][accnum] && $storage.product.clamp[label].clamp_accessory[current.accessory_type][accnum] <= 0)">-</button>
+				                  <input type="number" class="stepper__input" data-min="0" data-max="999999999" ng-model="$storage.product.clamp[label].clamp_accessory[current.accessory_type][accnum]"></input>
+				                  <button type="button" class="stepper__btn--incr" ng-click="increment_accessory(label, current.accessory_type, accnum)">+</button>
+				                </div>
+				   
+							</label>
+						</div>
+
+					</div>
+				</div>
+		</div>
+	</div>
+
+    </form>
+
+    </div>
+    <div ng-if="clampSectionFinished(label)" class="select_continue"> 
+    	Great! 
+        <span ng-if="!$storage.product.clamp[label].clamp_accessory[$storage.product.clamp[label].clamp_accessory_type].productnum">
+    		Select optional accessories or 
+    	</span>
+    	<a ng-if="label == 'a'" ng-click="gotoClamp('b')">Continue to Clamp B</a>
+    	<a ng-if="label == 'b'" ng-click="finishClamps()">Save Now</a>
+    </div>
+
+<div class="error_banner" ng-if="error">{{ error }}</div>

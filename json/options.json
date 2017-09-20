@@ -1,0 +1,702 @@
+{
+    "ground_builder": {
+        "groundset": {
+            "ground-test": {
+                "productnum": "Ground-Test",
+                "text": "Ground Test",
+                "description": "Mandatory test per ASTM F855 standard",
+                "quantity": 1,
+                "unitprice": 10
+            },
+            "ground-repair": {
+                "productnum": "Ground-Repair",
+                "description": "Mandatory labor charge for building ground set",
+                "text": "Ground Repair",
+                "quantity": 1,
+                "unitprice": 29
+            },
+            "heat-shrink": {
+                "productnum": 20886,
+                "text": "Heat Shrink",
+                "description": "Helps keep ground wire from corrosion from the elements",
+                "quantity": 2,
+                "unitprice": 5.00
+            }
+        },
+        "storage_bag": {
+            "productnum": "2614",
+            "text": "Storage Bag",
+            "description": "Ground Set Bag, Blue Vinyl, Web Shoulder Style Carry Handle",
+            "unitprice": 40.47
+        },
+        "cleaner": {
+            "productnum": "RBG-D72",
+            "text": "Cleaner",
+            "description": "72-count saturated wipe dispenser for use with rubber goods",
+            "unitprice": 38.52
+        },
+        "clamptype": {
+            "DuckBill": {
+                "text": "Duck Bill",
+                "example_part": 1853
+            },
+            "RoundJaw": {
+                "text": "Round Jaw",
+                "example_part": 1895
+            },
+            "FlatJaw": {
+                "text": "Flat Jaw",
+                "example_part": 1815
+            },
+            "BallStud": {
+                "text": "Ball Stud",
+                "example_part": 21190
+            }
+        },
+        "clamp": {
+            "1815": {
+                "productnum": 1815,
+                "text": "Grade 3 Bronze Flat Jaw Grounding Clamps",
+                "eyeclamp_desc": "\"T\" w/ strain sleeve & \"T\" screw",
+                "type": "FlatJaw",
+                "astm_grade": "3",
+                "jaw": "Serrated",
+                "material": "Bronze",
+                "screw_type": "\"\"\"V\"\" Thread\"",
+                "ferrule_type": "Threaded",
+                "main_line_range": "1.5\" - .06\"  Flat or Square",
+                "jaw_opening_in": "1.26\" - .06\"",
+                "jaw_opening_mm": "32 - 1.5 mm Dia.",
+                "cont_current_rating": "300 RMS Amps 60 Hz",
+                "weight": "1.6",
+                "incompatible_wires": [
+                    "4/0"
+                ],
+                "clamp_accessory_compatibility": {
+                    "mounting_ball_stud": [
+                        "21192",
+                        "24087"
+                    ]
+                },
+                "price": 77.95
+            },
+            "1853": {
+                "productnum": 1853,
+                "text": "1.66\" Serrated Jaw Aluminum Duck Bill",
+                "eyeclamp_desc": "Eye with strain relief sleeve",
+                "type": "DuckBill",
+                "astm_grade": "5",
+                "jaw": "Serrated",
+                "material": "Aluminum",
+                "screw_type": "Acme Thread",
+                "ferrule_type": "Threaded",
+                "main_line_range": "1590 MCM ACSR to #6",
+                "jaw_opening_in": "1.65\" - .16\"",
+                "jaw_opening_mm": "42mm - 4mm Dia.",
+                "cont_current_rating": "400 RMS Amps 60 Hz",
+                "weight": "1.5",
+                "clamp_accessory_compatibility": {
+                    "hanger_stud": [
+                        "21754"
+                    ]
+                },
+                "price": 92.23
+            },
+            "1895": {
+                "productnum": 1895,
+                "text": "1.5\" Aluminum \"C\" Clamp, W/ Flat Lower Jaw",
+                "eyeclamp_desc": "Eye with strain relief sleeve",
+                "type": "RoundJaw",
+                "astm_grade": "5",
+                "jaw": "Serrated",
+                "material": "Aluminum",
+                "screw_type": "Acme Thread",
+                "ferrule_type": "Threaded",
+                "main_line_range": "1431 KCM ACSR to #6",
+                "jaw_opening_in": "1.5\" - .16\"",
+                "jaw_opening_mm": "32mm - 4mm Dia.",
+                "cont_current_rating": "400 RMS Amps 60 Hz",
+                "weight": "1.5",
+                "clamp_accessory_compatibility": {
+                    "mounting_ball_stud": [
+                        "21192",
+                        "24087"
+                    ],
+                    "hanger_stud": [
+                        "1928",
+                        "2427"
+                    ]
+                },
+                "price": 52.9
+            },
+            "1923": {
+                "productnum": 1923,
+                "text": "2.4\" Aluminum \"C\" Clamp W/ Flat Lower Jaw",
+                "eyeclamp_desc": "Eye with strain relief sleeve",
+                "type": "RoundJaw",
+                "astm_grade": "5",
+                "jaw": "Smooth",
+                "material": "Aluminum",
+                "screw_type": "Acme Thread",
+                "ferrule_type": "Threaded",
+                "main_line_range": "2.0\" I.P.S. to #6",
+                "jaw_opening_in": "2.4\" - .16\"",
+                "jaw_opening_mm": "61mm - 4mm Dia.",
+                "cont_current_rating": "400 RMS Amps 60 Hz",
+                "weight": "2.1",
+                "clamp_accessory_compatibility": {
+                    "hanger_stud": [
+                        "1928",
+                        "2427"
+                    ]
+                },
+                "price": 90.14
+            },
+            "4200": {
+                "productnum": 4200,
+                "text": "477 MCM Bronze \"C\" Clamp W/ Curved Lower Jaw",
+                "eyeclamp_desc": "Eye with strain relief sleeve",
+                "type": "RoundJaw",
+                "astm_grade": "5",
+                "jaw": "Smooth",
+                "material": "Bronze",
+                "screw_type": "\"V\" Thread",
+                "ferrule_type": "Threaded",
+                "main_line_range": "477 MCM 18 x 1 ACSR to #8",
+                "jaw_opening_in": ".83\" - .12\"",
+                "jaw_opening_mm": "21mm - 3mm Dia.",
+                "cont_current_rating": "400 RMS Amps 60 Hz",
+                "weight": "1.1",
+                "strain_relief": [
+                    "1758"
+                ],
+                "clamp_accessory_compatibility": {
+                    "hanger_stud": [
+                        "2093"
+                    ]
+                },
+                "price": 84.31
+            },
+            "4345": {
+                "productnum": 4345,
+                "text": "Grade 5 Aluminum Flat Jaw Grounding Clamp",
+                "eyeclamp_desc": "\"T\" w/ strain sleeve & \"T\" screw",
+                "type": "FlatJaw",
+                "astm_grade": "5",
+                "jaw": "Serrated",
+                "material": "Aluminum",
+                "screw_type": "Acme Thread",
+                "ferrule_type": "Threaded",
+                "main_line_range": "1.5\" - .06\"  Flat or Square",
+                "jaw_opening_in": "1.26\" - .06\"",
+                "jaw_opening_mm": "32 - 1.5 mm Dia.",
+                "cont_current_rating": "400 RMS Amps 60 Hz",
+                "weight": "2",
+                "clamp_accessory_compatibility": {
+                    "mounting_ball_stud": [
+                        "21192",
+                        "24087"
+                    ]
+                },
+                "price": 98.12
+            },
+            "4369": {
+                "productnum": 4369,
+                "text": "Grade 5 Aluminum Flat Jaw Grounding Clamp",
+                "eyeclamp_desc": "Eye with strain relief sleeve & eye screw",
+                "type": "FlatJaw",
+                "astm_grade": "5",
+                "jaw": "Serrated",
+                "material": "Aluminum",
+                "screw_type": "Acme Thread",
+                "ferrule_type": "Threaded",
+                "main_line_range": "1.5\" - .06\"  Flat or Square ",
+                "jaw_opening_in": "1.26\" - .06\"",
+                "jaw_opening_mm": "32 - 1.5 mm Dia.",
+                "cont_current_rating": "400 RMS Amps 60 Hz",
+                "weight": "2",
+                "clamp_accessory_compatibility": {
+                    "mounting_ball_stud": [
+                        "21192",
+                        "24087"
+                    ]
+                },
+                "price": 88.7
+            },
+            "4388": {
+                "productnum": 4388,
+                "text": "1\" Aluminum \"C\" Clamp",
+                "eyeclamp_desc": "Eye with strain relief sleeve",
+                "type": "RoundJaw",
+                "astm_grade": "5",
+                "jaw": "Smooth Upper, Curved Lower",
+                "material": "Aluminum",
+                "screw_type": "Acme Thread",
+                "ferrule_type": "Threaded",
+                "main_line_range": "795 MCM 26 x 7 ACSR to #8",
+                "jaw_opening_in": "1.12\" - .12\"",
+                "jaw_opening_mm": "29mm - 3mm Dia.",
+                "cont_current_rating": "400 RMS 60 Hz",
+                "weight": "1.5",
+                "clamp_accessory_compatibility": {
+                    "mounting_ball_stud": [
+                        "21192",
+                        "24087"
+                    ],
+                    "hanger_stud": [
+                        "2537"
+                    ]
+                },
+                "price": 68.6
+            },
+            "21074": {
+                "productnum": 21074,
+                "text": "2\" Aluminum \"C\" Clamp W/ Curved Lower Jaw",
+                "eyeclamp_desc": "Eye with strain relief sleeve",
+                "type": "RoundJaw",
+                "astm_grade": "5H",
+                "jaw": "Smooth",
+                "material": "Aluminum",
+                "screw_type": "Acme Thread",
+                "ferrule_type": "Threaded",
+                "main_line_range": "3000 KCM ACSR to #6",
+                "jaw_opening_in": "2\" - .16\"",
+                "jaw_opening_mm": "51mm - 4mm Dia.",
+                "cont_current_rating": "400 RMS Amps 60 Hz",
+                "weight": "2.1",
+                "clamp_accessory_compatibility": {
+                    "hanger_stud": [
+                        "1928",
+                        "2427"
+                    ]
+                },
+                "price": 92.02
+            },
+            "21190": {
+                "productnum": 21190,
+                "text": "Ball And Socket System",
+                "eyeclamp_desc": "Eye with strain relief sleeve & eye screw",
+                "type": "BallStud",
+                "astm_grade": "5",
+                "jaw": "N/A",
+                "material": "Bronze",
+                "screw_type": "\"V\" Thread",
+                "ferrule_type": "Threaded",
+                "main_line_range": "1\" Ball Stud",
+                "jaw_opening_in": "N/A",
+                "jaw_opening_mm": "N/A",
+                "cont_current_rating": "400 RMS Amps 60 Hz",
+                "weight": "1.2",
+                "clamp_accessory_compatibility": {
+                    "mounting_ball_stud": [
+                        "21192",
+                        "21191",
+                        "21228",
+                        "24087",
+                        "24082"
+                    ]
+                },
+                "price": 97.35
+            },
+            "22675": {
+                "productnum": 22675,
+                "text": "Ball Stud \"C\" Clamp",
+                "eyeclamp_desc": "Eye with strain relief sleeve & eye screw",
+                "type": "BallStud",
+                "astm_grade": "5",
+                "jaw": "Smooth",
+                "material": "Aluminum",
+                "screw_type": "\"V\" Thread",
+                "ferrule_type": "Threaded",
+                "main_line_range": "1\" Ball Stud",
+                "jaw_opening_in": "1.5\" - .16\"",
+                "jaw_opening_mm": "32mm - 4mm Dia.",
+                "cont_current_rating": "400 RMS Amps 60 Hz",
+                "weight": "2.7",
+                "clamp_accessory_compatibility": {
+                    "mounting_ball_stud": [
+                        "21192",
+                        "21191",
+                        "21228",
+                        "24087",
+                        "24082"
+                    ],
+                    "hanger_stud": [
+                        "21192",
+                        "21191",
+                        "24082"
+                    ]
+                },
+                "price": 72.58
+            },
+            "24404": {
+                "productnum": 24404,
+                "text": "1.1\" Smooth Jaw Aluminum -- Spring Loaded",
+                "eyeclamp_desc": "Eye without strain relief sleeve",
+                "type": "DuckBill",
+                "astm_grade": "5",
+                "jaw": "Smooth",
+                "material": "Aluminum",
+                "screw_type": "Acme Thread",
+                "ferrule_type": "Smooth",
+                "main_line_range": "795 KCM ACSR to #6",
+                "jaw_opening_in": "1.1\" - .16\"",
+                "jaw_opening_mm": "28mm - 4mm Dia.",
+                "cont_current_rating": "400 RMS Amps 60 Hz",
+                "weight": "1.5",
+                "strain_relief": [
+                    "1788"
+                ],
+                "clamp_accessory_compatibility": {
+                    "hanger_stud": [
+                        "21754"
+                    ]
+                },
+                "price": 42.95
+            },
+            "24405": {
+                "productnum": 24405,
+                "text": "Aluminum Flat Jaw Grounding Clamp",
+                "eyeclamp_desc": "\"T\" screw no strain relief sleeve",
+                "type": "FlatJaw",
+                "astm_grade": "5",
+                "jaw": "Serrated",
+                "material": "Aluminum",
+                "screw_type": "Acme Thread",
+                "ferrule_type": "Smooth",
+                "main_line_range": "1.5\" - .06\"  Flat or Square ",
+                "jaw_opening_in": "1.26\" - .06\"",
+                "jaw_opening_mm": "32 - 1.5 mm Dia.",
+                "cont_current_rating": "400 RMS Amps 60 Hz",
+                "weight": "2.1",
+                "strain_relief": [
+                    "1788"
+                ],
+                "clamp_accessory_compatibility": {
+                    "mounting_ball_stud": [
+                        "21192",
+                        "24087"
+                    ],
+                    "hanger_stud": [
+                        "21754"
+                    ]
+                },
+                "price": 114.44
+            },
+            "24406": {
+                "productnum": 24406,
+                "text": "Aluminum Flat Jaw Grounding Clamp",
+                "eyeclamp_desc": "Eye with strain relief sleeve",
+                "type": "FlatJaw",
+                "astm_grade": "5",
+                "jaw": "Serrated",
+                "material": "Aluminum",
+                "screw_type": "Acme Thread",
+                "ferrule_type": "Smooth",
+                "main_line_range": "1.5\" - .06\"  Flat or Square",
+                "jaw_opening_in": "1.26\" - .06\"",
+                "jaw_opening_mm": "32 - 1.5 mm Dia.",
+                "cont_current_rating": "400 RMS Amps 60 Hz",
+                "weight": "2",
+                "strain_relief": [
+                    "1788"
+                ],
+                "clamp_accessory_compatibility": {
+                    "mounting_ball_stud": [
+                        "21192",
+                        "24087"
+                    ],
+                    "hanger_stud": [
+                        "21754"
+                    ]
+                },
+                "price": 105.23
+            },
+            "24441": {
+                "productnum": 24441,
+                "text": "Grade 5 Aluminum Flat Jaw Grounding Clamp",
+                "eyeclamp_desc": "Eye with strain relief sleeve & eye screw",
+                "type": "FlatJaw",
+                "astm_grade": "5",
+                "jaw": "Serrated",
+                "material": "Aluminum",
+                "screw_type": "Acme Thread",
+                "ferrule_type": "Threaded",
+                "main_line_range": "1.5\" - .06\"  Flat or Square ",
+                "jaw_opening_in": "1.26\" - .06\"",
+                "jaw_opening_mm": "32 - 1.5 mm Dia.",
+                "cont_current_rating": "400 RMS Amps 60 Hz",
+                "weight": "2",
+                "clamp_accessory_compatibility": {
+                    "mounting_ball_stud": [
+                        "21192",
+                        "24087"
+                    ]
+                },
+                "price": 90.28
+            },
+            "24442": {
+                "productnum": 24442,
+                "text": "Grade 5 Aluminum Flat Jaw Grounding Clamp",
+                "eyeclamp_desc": "\"T\" w/ strain sleeve & \"T\" screw",
+                "type": "FlatJaw",
+                "astm_grade": "5",
+                "jaw": "Serrated",
+                "material": "Aluminum",
+                "screw_type": "Acme Thread",
+                "ferrule_type": "Threaded",
+                "main_line_range": "1.5\" - .06\"  Flat or Square ",
+                "jaw_opening_in": "1.26\" - .06\"",
+                "jaw_opening_mm": "32 - 1.5 mm Dia.",
+                "cont_current_rating": "400 RMS Amps 60 Hz",
+                "weight": "2",
+                "clamp_accessory_compatibility": {
+                    "mounting_ball_stud": [
+                        "21192",
+                        "24087"
+                    ]
+                },
+                "price": 103.17
+            }
+        },
+        "clamp_accessory": {
+            "1758": {
+                "productnum": 1758,
+                "text": "Strain Relief",
+                "type": "strain_relief",
+                "price": 3.59
+            },
+            "1788": {
+                "productnum": 1788,
+                "text": "Strain Relief",
+                "type": "strain_relief",
+                "price": 5.34
+            },
+            "1928": {
+                "productnum": 1928,
+                "text": "Hanger Stud",
+                "type": "hanger_stud",
+                "price": 10.18
+            },
+            "2022": {
+                "productnum": 2022,
+                "text": "Threaded Ferrule",
+                "type": "ferrule",
+                "price": 35.19
+            },
+            "2023": {
+                "productnum": 2023,
+                "text": "Threaded Ferrule",
+                "type": "ferrule",
+                "price": 36.25
+            },
+            "2024": {
+                "productnum": 2024,
+                "text": "Threaded Ferrule",
+                "type": "ferrule",
+                "price": 41.81
+            },
+            "2025": {
+                "productnum": 2025,
+                "text": "Threaded Ferrule",
+                "type": "ferrule",
+                "price": 43.16
+            },
+            "2093": {
+                "productnum": 2093,
+                "text": "Hanger Stud",
+                "type": "hanger_stud",
+                "price": 34.92
+            },
+            "2427": {
+                "productnum": 2427,
+                "text": "Double Hanger",
+                "type": "hanger_stud",
+                "price": 26.42
+            },
+            "2537": {
+                "productnum": 2537,
+                "text": "Hanger Stud",
+                "type": "hanger_stud",
+                "price": 13.25
+            },
+            "21191": {
+                "productnum": 21191,
+                "text": "Short Ball Stud",
+                "type": "mounting_ball_stud",
+                "price": 30.7
+            },
+            "21192": {
+                "productnum": 21192,
+                "text": "Long Ball Stud",
+                "type": "mounting_ball_stud",
+                "price": 31.34
+            },
+            "21228": {
+                "productnum": 21228,
+                "text": "Ball Stud Offset",
+                "type": "mounting_ball_stud",
+                "price": 41.8
+            },
+            "21754": {
+                "productnum": 21754,
+                "text": "Support Stud",
+                "type": "mounting_ball_stud",
+                "price": 22.12
+            },
+            "24082": {
+                "productnum": 24082,
+                "text": "Ball Stud Internal Thread",
+                "type": "mounting_ball_stud",
+                "price": 26.69
+            },
+            "24087": {
+                "productnum": 24087,
+                "text": "Ball Stud Offset Long",
+                "type": "mounting_ball_stud",
+                "price": 44.56
+            },
+            "24420": {
+                "productnum": 24424,
+                "text": "Smooth Ferrule",
+                "type": "ferrule",
+                "price": 67.08
+            },
+            "24421": {
+                "productnum": 24425,
+                "text": "Smooth Ferrule",
+                "type": "ferrule",
+                "price": 69.79
+            },
+            "24422": {
+                "productnum": 24426,
+                "text": "Smooth Ferrule",
+                "type": "ferrule",
+                "price": 66.32
+            },
+            "24423": {
+                "productnum": 24427,
+                "text": "Smooth Ferrule",
+                "type": "ferrule",
+                "price": 86.44
+            }
+        },
+        "ferrule": {
+            "Threaded": {
+                "#2": {
+                    "productnum": 2022,
+                    "wire_compatibility": "#2",
+                    "ferrule_type": "Threaded",
+                    "price": 35.19
+                },
+                "1/0": {
+                    "productnum": 2023,
+                    "wire_compatibility": "1/0",
+                    "ferrule_type": "Threaded",
+                    "price": 36.25
+                },
+                "2/0": {
+                    "productnum": 2024,
+                    "wire_compatibility": "2/0",
+                    "ferrule_type": "Threaded",
+                    "price": 41.81
+                },
+                "4/0": {
+                    "productnum": 2025,
+                    "wire_compatibility": "4/0",
+                    "ferrule_type": "Threaded",
+                    "price": 43.16
+                }
+            },
+            "Smooth": {
+                "#2": {
+                    "productnum": 24420,
+                    "wire_compatibility": "#2",
+                    "ferrule_type": "Smooth",
+                    "price": 67.08
+                },
+                "1/0": {
+                    "productnum": 24421,
+                    "wire_compatibility": "1/0",
+                    "ferrule_type": "Smooth",
+                    "price": 69.79
+                },
+                "2/0": {
+                    "productnum": 24422,
+                    "wire_compatibility": "2/0",
+                    "ferrule_type": "Smooth",
+                    "price": 66.32
+                },
+                "4/0": {
+                    "productnum": 24423,
+                    "wire_compatibility": "4/0",
+                    "ferrule_type": "Smooth",
+                    "price": 86.44
+                }
+            }
+        },
+        "clamp_accessory_type": {
+            "hanger_stud": {
+                "text": "Hanger",
+                "mode": "radio",
+                "example_part": 1928
+            },
+            "mounting_ball_stud": {
+                "text": "Ball Stud Mount",
+                "mode": "stepper",
+                "example_part": 21191
+            }
+        },
+        "wire_color": [
+            "yellow",
+            "clear",
+            "green"
+        ],
+        "wire": {
+            "4/0": {
+                "productnum": "4/0",
+                "sequence": 1,
+                "astm_grade": 5,
+                "withstand_15": 43,
+                "withstand_30": 30,
+                "colors": {
+                    "yellow": 10.1,
+                    "clear": 11.48
+                }
+            },
+            "2/0": {
+                "productnum": "2/0",
+                "sequence": 3,
+                "astm_grade": 3,
+                "withstand_15": 27,
+                "withstand_30": 20,
+                "colors": {
+                    "yellow": 7.05,
+                    "clear": 7.48
+                }
+            },
+            "1/0": {
+                "productnum": "1/0",
+                "sequence": 4,
+                "astm_grade": 2,
+                "withstand_15": 21,
+                "withstand_30": 15,
+                "colors": {
+                    "yellow": 6.36,
+                    "clear": 6.36
+                }
+            },
+            "#2": {
+                "productnum": "#2",
+                "sequence": 5,
+                "astm_grade": 1,
+                "withstand_15": 14,
+                "withstand_30": 10,
+                "colors": {
+                    "yellow": 4.47,
+                    "clear": 4.47
+                }
+            }
+        }
+    }
+}

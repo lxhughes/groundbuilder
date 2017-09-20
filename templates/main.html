@@ -1,0 +1,218 @@
+<div class="wrapper">
+	<header>
+		<div class="logo"></div>
+		<h1>Build Ground Set</h1>
+	</header>
+
+<form ng-if="$storage.options">
+<div class="wrapper_justify">
+
+	<section class="clamp_select" ng-class="{ 'clamp_selected' : progressNum == 1}" ng-click="setProgressNum(1)">
+
+		<div class="progress_number">1</div>
+		 <h2>Select Wire</h2>
+		<ul class="wire_choice">
+			<li ng-repeat="wire in $storage.options.wire | orderObjectBy: 'sequence'">
+				<input 
+					type="radio" 
+					id="product_wire_{{ wire.productnum }}" 
+					name="product_wire" 
+					ng-model="$storage.product.wire" 
+					ng-value="wire.productnum"
+					ng-change="consolidateProduct()">
+				</input>
+				<label 
+					for="product_wire_{{ wire.productnum }}" 
+					ng-mouseenter="wire_hover = wire.productnum"
+					ng-mouseleave="wire_hover = ''">
+					<h3 class="txt_darkblue">{{ wire.productnum }}</h3>	
+					<div class="wire{{ wire.sequence }}" ng-class="{ 'opacity_low': wire.productnum != $storage.product.wire }"></div> 
+				</label> 
+				
+				<!-- WIRE {{ wire.productnum }} INFO -->
+				<div class="wire_info" ng-class="{'hidden': wire_hover != wire.productnum, 'show': wire_hover == wire.productnum}"> 
+					 <section class="clamp_select secondary_items">
+
+						<h2>Wire Info</h2>
+
+						<table>
+							<tr class="table_titles">
+								<td><strong>Cable Size</strong></td>
+								<td> {{ wire.productnum }}</td>
+
+							</tr>
+							 <tr >
+								<td><strong>ASTM GRADE</strong></td>
+								<td> {{ wire.astm_grade }}</td>
+
+							</tr>  
+						</table>
+
+						<table> 
+							   <tr class="table_titles">
+									<td colspan="2">
+										<strong>Withstand Rating kA (60Hz)*</strong>
+									</td>
+								</tr>
+
+							<tr>
+								<td><strong>15 Cycles</strong></td>
+								<td> {{ wire.withstand_15 }}</td>
+
+							</tr>
+							 <tr>
+								<td><strong>30 Cycles</strong></td>
+								<td> {{ wire.withstand_30 }}</td>
+
+							</tr>   
+						</table> 
+
+					</section>
+				</div>
+				<!-- END WIRE INFO -->	
+			</li>
+		</ul>
+		
+		<div class="summary">
+
+		 <p class="wire_length">Select length: <input name="jumper_cable_length" type="number" size="5" maxlength="30" min="0" class="wire_length" required="required" ng-model="$storage.product.wire_length" ng-change="consolidateProduct()"></input></p>
+
+		 <p>Select color:</p>
+			<wirecolor></wirecolor>
+
+		</div>
+
+		 <h3 class="item_price">
+		 	<div ng-if="getPriceWire() > 0">
+				Item Price: 
+				<strong>{{ getPriceWire() | currency }}</strong>
+			</div>
+		 </h3>
+
+	</section>
+
+	<section class="clamp_select" ng-class="{ 'clamp_selected' : progressNum == 2 }" ng-click="gotoClamp('a')">
+		<div class="progress_number">2</div>
+		 <h2>Select Clamp A</h2>
+		<div class="clamp_choice">
+			<img ng-src="img/{{ $storage.product.clamp['a'].productnum }}.png" alt="{{ $storage.options.clamptype[$storage.options.clamp[$storage.product.clamp['a'].productnum].type].text }}"></img>
+		</div>
+		<div class="summary" ng-if="!$storage.product.clamp['a'].productnum">
+			Click to set Clamp A
+		</div>
+		<div class="summary" ng-if="$storage.product.clamp['a'].productnum">
+			<p>Part Number: <strong>{{ $storage.product.clamp['a'].productnum }}</strong></p>
+			<p>Type: <strong>{{ $storage.options.clamptype[$storage.options.clamp[$storage.product.clamp['a'].productnum].type].text }}</strong></p>
+			<p>Jaw: <strong>{{ $storage.options.clamp[$storage.product.clamp['a'].productnum].jaw }}</strong></p>
+			<p>Jaw Opening: <strong>{{ $storage.options.clamp[$storage.product.clamp['a'].productnum].jaw_opening_in }}</strong></p>
+			<p>Ferrule: <strong>{{ $storage.options.clamp[$storage.product.clamp['a'].productnum].ferrule_type }}</strong></p>
+		</div>
+
+		 <h3 class="item_price">
+		 	<div ng-if="$storage.product.clamp['a'].productnum">
+				Item Price: 
+				<strong>{{ $storage.options.clamp[$storage.product.clamp['a'].productnum].price | currency }}</strong>
+			</div>
+		 </h3>
+	</section>
+
+	<section 
+		class="clamp_select" 
+		ng-class="{ 'clamp_selected' : progressNum == 3, 'clamp_unselected' : 3 > maxProgressNum }" 
+		ng-click="testGotoClamp('b')">
+
+		<div class="progress_number">3</div>
+		<h2>Select Clamp B</h2>
+		<div class="clamp_choice">
+			<img ng-src="img/{{ $storage.product.clamp['b'].productnum }}.png" alt="{{ $storage.options.clamptype[$storage.options.clamp[$storage.product.clamp['b'].productnum].type].text }}"></img>
+		</div>
+		<div class="summary" ng-if="!$storage.product.clamp['b'].productnum">
+			<div ng-if="!$storage.product.clamp['a'].productnum">
+				Set Clamp B after Clamp A
+			</div>
+			<div ng-if="$storage.product.clamp['a'].productnum">
+				Click to set Clamp B
+			</div>
+		</div>		
+		<div class="summary" ng-if="$storage.product.clamp['b'].productnum">
+			<p>Part Number: <strong>{{ $storage.product.clamp['b'].productnum }}</strong></p>
+			<p>Type: <strong>{{ $storage.options.clamptype[$storage.options.clamp[$storage.product.clamp['b'].productnum].type].text }}</strong></p>
+			<p>Jaw: <strong>{{ $storage.options.clamp[$storage.product.clamp['b'].productnum].jaw }}</strong></p>
+			<p>Jaw Opening: <strong>{{ $storage.options.clamp[$storage.product.clamp['b'].productnum].jaw_opening_in }}</strong></p>
+			<p>Ferrule: <strong>{{ $storage.options.clamp[$storage.product.clamp['b'].productnum].ferrule_type }}</strong></p>
+		</div>
+
+		 <h3 class="item_price">
+		 	<div ng-if="$storage.product.clamp['b'].productnum">
+				Item Price: 
+				<strong>{{ $storage.options.clamp[$storage.product.clamp['b'].productnum].price | currency }}</strong>
+			</div>
+		 </h3>
+	</section>
+
+</div>
+</form>
+
+<!-- ADDITIONAL -->
+<div class="wrapper_justify">
+	<section class="clamp_select secondary_items">
+		<h2>Accessories</h2>
+		
+		<!-- acc repeat -->
+		<div ng-repeat="(productnum, acc) in $storage.consolidatedProduct.line_item.accessory | matchAttribute:'type':'clamp_accessory'">
+			<div class="small_item clearfix">
+				<img ng-src="img/{{ acc.productnum }}.png" alt="{{ acc.text }}"></img>
+				<h3>{{ acc.unitprice | currency }}</h3>
+				<div class="small_summary">
+					<p>Part Number: <strong>{{ acc.productnum }}</strong></p>
+					<p>Style: <strong>{{ acc.text }}</strong></p>
+					<p ng-if="acc.quantity > 1">Quantity: <strong>{{ acc.quantity }}</strong></p>
+				</div>
+			 </div>
+		</div>
+
+	</section>
+
+	 <section class="clamp_select secondary_items">
+
+		<h2>Mandatory Items</h2>
+
+		<table ng-repeat="packaged in $storage.options.groundset">
+			<thead>
+				<tr>
+					<td>{{ packaged.text }}  <i class="fa fa-question-circle fa-sm" rel="tooltip" title="{{ packaged.description }}"></i><!--DESCRIPTION -->
+					</td>
+				</tr>
+			</thead>
+			<tr class="table_titles">
+				<td>Part #</td>
+				<td>Qty</td>
+				<td>Price</td>
+			</tr>
+			<tr>
+				<td>{{ packaged.productnum }}</td>
+				<td>{{ packaged.quantity * $storage.product.groundset_qty }}</td>
+				<td>{{ packaged.quantity * $storage.product.groundset_qty * packaged.unitprice | currency }}</td>
+			</tr>
+		</table>
+
+	</section>
+
+	<section class="clamp_select secondary_items" ng-class="{ 'clamp_selected' : progressNum >= 4 }">         
+	<a name="bottom"></a>
+		<h2>Subtotal</h2>
+	  <h1 class="txt_green">{{ $storage.consolidatedProduct.subtotal | currency }}</h1>
+
+	  <a ng-click="gotoCheckout()">
+	  	<h3>Continue to Quote <i class="fa fa-chevron-right"></i></h3>
+	  </a>
+	
+	</section>
+		
+</div>
+
+<a class="reset txt_green" href="" ng-click="resetProduct()"><i class="fa icon-refresh"></i> Reset Options
+  </a>
+
+</div>
+<div class="error_banner" ng-if="error">{{ error }}</div>

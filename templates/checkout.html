@@ -1,0 +1,235 @@
+
+    <div class="wrapper clearfix">
+          <header>
+                <h1><div class="logo"></div> <span>Submit Quote</span>
+                <a ui-sref="main" class="cancel"><i class="fa fa-chevron-left"></i> Back </a></h1>
+        </header>
+
+        <form>
+ 
+        <div class="wrapper_justify preview">
+
+           <section class="preview_clamp">
+
+                 <h4>Clamp A</h4>
+                <div class="clamp_choice"><img ng-src="img/{{ $storage.product.clamp['a'].productnum }}.png" alt="{{ $storage.options.clamp[$storage.product.clamp['a'].productnum].text }}" /></div>
+
+                <div ng-if="$storage.product.clamp['a'].clamp_accessory['hanger_stud']" class="clamp_accessory">
+                    <img ng-src="img/{{ $storage.product.clamp['a'].clamp_accessory['hanger_stud'] }}.png" alt="{{ $storage.options.clamp_accessory[$storage.product.clamp['a'].clamp_accessory['hanger_stud']].text }}" />
+                    <h4>{{ $storage.options.clamp_accessory[$storage.product.clamp['a'].clamp_accessory['hanger_stud']].text }}</h4>
+                </div>
+                <div ng-if="$storage.product.clamp['a'].clamp_accessory['mounting_ball_stud']" ng-repeat="(mounting_num, tf) in $storage.product.clamp['a'].clamp_accessory['mounting_ball_stud']" class="clamp_accessory">
+                    <img ng-src="img/{{ mounting_num }}.png" alt="{{ $storage.options.clamp_accessory[mounting_num].text }}" />
+                    <h4>{{ $storage.options.clamp_accessory[mounting_num].text }}</h4>
+                </div>
+                
+            </section>
+
+
+             <section class="preview_clamp">
+
+                 <h4>{{ $storage.product.wire }} Wire ({{ $storage.product.wire_length }}ft)</h4>
+                <div class="clamp_choice"><img ng-src="img/wire.png" alt="Wire" /></div>
+                
+                <wirecolor></wirecolor>
+                
+            </section>
+
+
+             <section class="preview_clamp">
+             
+                 <h4>Clamp B</h4>
+                <div class="clamp_choice"><img ng-src="img/{{ $storage.product.clamp['b'].productnum }}.png" class="reverse_img" alt="{{ $storage.options.clamp[$storage.product.clamp['b'].productnum].text }}" />
+                </div>
+
+                <div ng-if="$storage.product.clamp['b'].clamp_accessory['hanger_stud']" class="clamp_accessory">
+                    <img ng-src="img/{{ $storage.product.clamp['b'].clamp_accessory['hanger_stud'] }}.png" alt="{{ $storage.options.clamp_accessory[$storage.product.clamp['b'].clamp_accessory['hanger_stud']].text }}" />
+                    <h4>{{ $storage.options.clamp_accessory[$storage.product.clamp['b'].clamp_accessory['hanger_stud']].text }}</h4>
+                </div>
+                <div ng-if="$storage.product.clamp['b'].clamp_accessory['mounting_ball_stud']" ng-repeat="(mounting_num, tf) in $storage.product.clamp['b'].clamp_accessory['mounting_ball_stud']" class="clamp_accessory">
+                    <img ng-src="img/{{ mounting_num }}.png" alt="{{ $storage.options.clamp_accessory[mounting_num].text }}" />
+                    <h4>{{ $storage.options.clamp_accessory[mounting_num].text }}</h4>
+                </div>
+               
+            </section>
+
+            <div class="addmore">
+                <p> Add Cleaners <i class="fa fa-question-circle fa-sm" rel="tooltip" title="{{ $storage.options.cleaner.description }}"></i></p> 
+
+                <div class="stepper">
+                  <button type="button" class="stepper__btn--decr" ng-click="decrement('cleaner_qty')" ng-disabled="0 >= $storage.product.cleaner_qty">-</button>
+                  <input type="number" class="stepper__input" min="0" max="999999999" ng-model="$storage.product.cleaner_qty" ng-change="consolidateProduct()"></input>
+                  <button type="button" class="stepper__btn--incr" ng-click="increment('cleaner_qty')">+</button>
+                </div>
+            </div>
+            <div class="addmore">
+                <p> Add Storage Bags <i class="fa fa-question-circle fa-sm" rel="tooltip" title="{{ $storage.options.storage_bag.description }}"></i></p> 
+
+                <div class="stepper">
+                  <button type="button" class="stepper__btn--decr" ng-click="decrement('bag_qty')" ng-disabled="0 >= $storage.product.bag_qty">-</button>
+                  <input type="number" class="stepper__input" min="0" max="999999999" ng-model="$storage.product.bag_qty" ng-change="consolidateProduct()"></input>
+                  <button type="button" class="stepper__btn--incr" ng-click="increment('bag_qty')">+</button>
+                </div>
+            </div>
+            
+                <h2>Ground Set</h2>
+
+                <table>
+                    <tr class="table_titles">
+                        <td>Name</td>
+                        <td>Part #</td>
+                        <td>Qty</td>
+                        <td>Price</td>
+                    </tr>
+
+                   <tr ng-repeat="(productnum, item) in $storage.consolidatedProduct.line_item.groundset | orderBy: 'productnum'">
+                      <td>
+                        {{ item.text }}
+                         <i ng-if="item.description" class="fa fa-question-circle fa-sm" rel="tooltip" title="{{ item.description }}"></i>
+                      </td>
+                      <td>{{ item.productnum }}</td>
+                      <td ng-class="{'wire_length_checkout': item.type == 'wire'}">
+                        <input ng-if="item.type == 'wire'" ng-model="$storage.product.wire_length" name="jumper_cable_length" type="number" size="5" min="0" maxlength="30" value="{{ item.quantity }}" ng-change="consolidateProduct()"></input>
+                        <span ng-if="item.type != 'wire'">{{ item.quantity }}</span>
+                      </td>
+                      <td>{{ (item.quantity * item.unitprice) | currency }}</td>
+                  </tr>
+                    
+                </table>
+
+                <h2>Accessories</h2>
+
+                <table>
+                    <tr class="table_titles">
+                        <td>Name</td>
+                        <td>Part #</td>
+                        <td>Qty</td>
+                        <td>Price</td>
+                    </tr>
+
+                   <tr ng-repeat="(productnum, item) in $storage.consolidatedProduct.line_item.accessory | orderBy: 'productnum'">
+                      <td>
+                        {{ item.text }}
+                         <i ng-if="item.description" class="fa fa-question-circle fa-sm" rel="tooltip" title="{{ item.description }}"></i>
+                      </td>
+                      <td>{{ item.productnum }}</td>
+                      <td>
+                        <span>{{ item.quantity }}</span>
+                      </td>
+                      <td>{{ (item.quantity * item.unitprice) | currency }}</td>
+                  </tr>
+                    
+                </table>
+
+        </div>
+       
+
+        <div class="wrapper_justify checkout">
+            <div class="checkout_container">
+                <h4>Order Summary</h4>
+                
+            <table class="checkout_table">
+
+        <tbody>
+            <tr>
+
+                <td></td>
+            </tr>
+            <tr class="">
+          <td class="">
+            Items:
+          </td>
+          <td class="">
+            {{ $storage.consolidatedProduct.subtotal | currency }}
+          </td>
+        </tr>
+
+
+        <tr class="">
+          <td class="">
+            Shipping &amp; handling:
+          </td>
+          <td class="">
+            {{ $storage.consolidatedProduct.shipping | currency }}
+          </td>
+        </tr>
+
+        <tr data-testid="" class="">
+          <td colspan="2" class="">
+            Calculate shipping:
+         
+           <input type="text" placeholder="Enter Zip" length="20" ng-model="$storage.product.zipcode"></input>
+           <button type="button" ng-click="getTax()">Calculate</button>
+          </td>
+        </tr>
+
+        <tr class="">
+          <td class="">
+            Total before tax:
+          </td>
+          <td class="">
+            {{ $storage.consolidatedProduct.subtotal + $storage.consolidatedProduct.shipping | currency }}
+          </td>
+        </tr>
+
+
+        <tr class="">
+          <td class="">
+            Estimated tax to be collected:
+          </td>
+          <td class="">
+            {{ $storage.consolidatedProduct.tax | currency }}
+          </td>
+        </tr>
+
+
+        <tr class="">
+          <td colspan="2" class=""><hr></hr></td>
+        </tr>
+        <tr>
+          <td class="total_price">
+            Order total:
+          </td>
+          <td class="total_price">
+            {{ $storage.consolidatedProduct.total | currency }}
+          </td>
+        </tr>
+
+          </tbody></table>
+            </div>
+
+          <div class="checkout_container quote">
+                <h4>Submit Quote Info</h4>
+            <div class="quote_input">
+                <small>Name</small>
+                <input type="text" placeholder="" class="" name="name" ng-model="messageName"></input>
+            </div>
+
+            <div class="quote_input">
+                <small>Email</small>
+                <input type="email" placeholder="" class="" name="email" ng-model="messageEmail"></input>
+            </div>
+              <div class="quote_input">
+                <small>Phone</small>
+                <input type="tel" placeholder="" class="" name="phone" ng-model="messagePhone"></input>
+            </div>
+              <div class="quote_input">
+                <small>Other Questions/Comments </small>
+               <textarea name="comments" rows="10" ng-model="messageComments">
+
+                </textarea>
+            </div>
+
+            <div class="quote_input">
+                <button type="button" class="checkout_button" value="submit" ng-click="gotoThankyou(messageName,messageEmail,messagePhone,messageComments)">
+                    Submit Quote <i class="fa fa-envelope"></i>
+                </button>
+            </div>
+
+        </div>
+    </div>
+    </form>
+    
+</div>
+
+<div class="error_banner" ng-if="error">{{ error }}</div>
